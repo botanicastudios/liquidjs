@@ -59,6 +59,9 @@ function getSuffix (d: LiquidDate) {
 function century (d: LiquidDate) {
   return parseInt(d.getFullYear().toString().substring(0, 2), 10)
 }
+function getQuarter (d: LiquidDate) {
+  return Math.floor(d.getMonth() / 3 + 1)
+}
 
 // default to 0
 const padWidths = {
@@ -115,6 +118,7 @@ const formatCodes = {
   p: (d: LiquidDate) => (d.getHours() < 12 ? 'AM' : 'PM'),
   P: (d: LiquidDate) => (d.getHours() < 12 ? 'am' : 'pm'),
   q: (d: LiquidDate) => getSuffix(d),
+  Q: (d: LiquidDate) => getQuarter(d),
   s: (d: LiquidDate) => Math.round(d.getTime() / 1000),
   S: (d: LiquidDate) => d.getSeconds(),
   u: (d: LiquidDate) => d.getDay() || 7,
